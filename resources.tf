@@ -30,3 +30,11 @@ resource "aws_s3_bucket_policy" "allow_access_from_cloudfront" {
             }
             EOF
 }
+
+resource "aws_cloudfront_distribution" "s3_distribution" {
+  origin {
+    domain_name              = aws_s3_bucket.S3Bucket.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.example.id
+    origin_id                = aws_s3_bucket.S3Bucket.id
+  }
+}
