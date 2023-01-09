@@ -54,4 +54,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   tags = {
     Environment = "development"
   }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
 }
