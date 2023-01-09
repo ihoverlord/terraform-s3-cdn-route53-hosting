@@ -38,6 +38,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     origin_id                = aws_s3_bucket.S3Bucket.id
   }
 
-  enabled = true
+  enabled         = true
+  is_ipv6_enabled = true
 
 }
