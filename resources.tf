@@ -85,3 +85,11 @@ resource "aws_cloudfront_origin_access_control" "example" {
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
 }
+
+resource "aws_route53_record" "www" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = var.aws_route53_record_name
+  type    = "A"
+  ttl     = 300
+  records = [aws_cloudfront_distribution.s3_distribution.domain_name]
+}
