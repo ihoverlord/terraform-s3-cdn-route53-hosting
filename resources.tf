@@ -76,3 +76,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     cloudfront_default_certificate = true
   }
 }
+
+
+resource "aws_cloudfront_origin_access_control" "example" {
+  name                              = "aws_cloudfront_origin_access_control"
+  description                       = "aws_cloudfront_origin_access_control Policy"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
